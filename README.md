@@ -1,0 +1,1 @@
+# automacaoSemComplicacaoAPI2.0
