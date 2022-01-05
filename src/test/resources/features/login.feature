@@ -15,4 +15,3 @@ Funcionalidade: Realizar Login
       | senha | 123456             |
     Quando envio uma requisicao do tipo POST de Login
     Entao valido que recebo status 400 no response
-    
