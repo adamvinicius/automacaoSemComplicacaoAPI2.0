@@ -3,6 +3,7 @@ package plataformaFilmes;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import maps.LoginMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,21 +39,20 @@ public class PlataformaFilmesTest {
     @BeforeAll
     public static void validarLoginMap(){
         RestUtils.setBaseURI("http://localhost:8080/");
-        Map<String, String> map = new HashMap<>();
-        map.put("email", "aluno@email.com");
-        map.put("senha", "123456");
+        LoginMap.initLogin();
 
-        Response response = RestUtils.post(map, ContentType.JSON, "auth");
+        Response response = RestUtils.post(LoginMap.getLogin(), ContentType.JSON, "auth");
 
         assertEquals(200, response.statusCode());
-        token = response.jsonPath().get("token");
+        LoginMap.token = response.jsonPath().get("token");
 
     }
 
     @Test
     public void validarConsultaCategoria(){
         Map<String, String> header = new HashMap<>();
-        header.put("Authorization", "Bearer "+token);
+        header.put("Authorization", "Bearer "+LoginMap.token);
+
         Response response = RestUtils.get(header, "categorias");
         assertEquals(200, response.statusCode());
         System.out.println(response.jsonPath().get().toString());
