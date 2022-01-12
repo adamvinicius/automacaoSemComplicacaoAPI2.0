@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features/",
-        tags = "@regressivo",
+        tags = "@categoria",
         glue = "steps",
         plugin = {"json:target/reports/CucumberReports.json","pretty"},
         snippets = CucumberOptions.SnippetType.CAMELCASE

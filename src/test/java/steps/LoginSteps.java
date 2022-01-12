@@ -35,4 +35,11 @@ public class LoginSteps {
         RestUtils.setBaseURI(url);
         LoginMap.getLogin().putAll(map);
     }
+
+    @Dado("que tenha realizado o login com dados validos")
+    public void queTenhaRealizadoOLoginComDadosValidos() {
+        queTenhaUmPayloadValidoDaAPIDeLogin();
+        envioUmaRequisicaoDoTipoPOSTDeLogin();
+        armazenoOTokenQueReceboDoResponseDeLogin();
+    }
 }
