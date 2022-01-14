@@ -16,3 +16,10 @@
       Entao valido que recebo status 403 no response
       E valido que no campo "message" possui o valor "Access Denied"
 
+    Cenario: Realizar Consulta Categoria com token invalido
+      Dado que altere o campo "Authorization" para "invalido" do header de Categoria
+      Quando realizo uma requisicao do tipo GET de Categoria
+      Entao valido que recebo status 403 no response
+      E valido que no campo "message" possui o valor "Access Denied"
+
+
