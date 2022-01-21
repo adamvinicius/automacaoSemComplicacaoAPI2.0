@@ -7,6 +7,9 @@ import io.restassured.http.ContentType;
 import maps.FilmesMap;
 import utils.RestUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FilmeSteps {
 
     @Dado("que tenha um payload da API de Filme")
@@ -24,5 +27,21 @@ public class FilmeSteps {
 
     @Quando("realizo uma requisicao do tipo GET de Filme")
     public void realizoUmaRequisicaoDoTipoGETDeFilme() {
+        Map<String, Object> param = new HashMap<>();
+        String nome = FilmesMap.getFilme().get("nome").toString();
+        param.put("nome", nome);
+        RestUtils.get(FilmesMap.getHeader(), param, "filmes");
+
+    }
+
+    @Dado("altero o indice {int} da lista de categorias de filme com os valores")
+    public void alteroOIndiceDaListaDeCategoriasDeFilmeComOsValores(int indice,
+                                                                    Map<String, Object> map) {
+        FilmesMap.getListCategoria().get(indice).putAll(map);
+    }
+    @Quando("realizo uma requisicao do tipo PUT de Filme")
+    public void realizoUmaRequisicaoDoTipoPUTDeFilme() {
+        RestUtils.put(FilmesMap.getHeader(), FilmesMap.getFilme(),
+                ContentType.JSON, "filmes/"+FilmesMap.id);
     }
 }
