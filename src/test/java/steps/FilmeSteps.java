@@ -19,6 +19,7 @@ public class FilmeSteps {
     @Quando("realizo uma requisicao do tipo POST de Filme")
     public void realizoUmaRequisicaoDoTipoPOSTDeFilme() {
         RestUtils.post(FilmesMap.getHeader(), FilmesMap.getFilme(), ContentType.JSON, "filmes");
+        System.out.println(RestUtils.getResponse().jsonPath().get().toString());
     }
     @Entao("armazeno o id que recebo do response de Filme")
     public void armazenoOIdQueReceboDoResponseDeFilme() {
