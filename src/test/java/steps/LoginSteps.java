@@ -12,12 +12,12 @@ import java.util.Map;
 
 public class LoginSteps {
 
-    String url = "http://localhost:8080/";
+    
 
     @Dado("que tenha um payload valido da API de Login")
     public void queTenhaUmPayloadValidoDaAPIDeLogin() {
         LoginMap.initLogin();
-        RestUtils.setBaseURI(url);
+        
     }
     @Quando("envio uma requisicao do tipo POST de Login")
     public void envioUmaRequisicaoDoTipoPOSTDeLogin() {
@@ -32,7 +32,7 @@ public class LoginSteps {
     @Dado("que tenha um payload da API de Login com as seguintes informacoes")
     public void queTenhaUmPayloadDaAPIDeLoginComAsSeguintesInformacoes(Map<String, String> map) {
         LoginMap.initLogin();
-        RestUtils.setBaseURI(url);
+        
         LoginMap.getLogin().putAll(map);
     }
 
